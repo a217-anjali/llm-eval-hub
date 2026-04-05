@@ -431,11 +431,14 @@
             border: 1px solid var(--color-border);
             border-radius: var(--radius-md);
             transition: all var(--transition-fast);
+            display: block;
+            cursor: pointer;
         }
 
         .icon-card:hover {
             border-color: var(--color-accent);
             transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
         }
 
         .icon {
@@ -1293,30 +1296,30 @@
                 <p>The evaluation landscape has matured dramatically since GPT-4's release in March 2023. Specialized benchmarks for reasoning, coding, multimodal understanding, and long-context modeling have emerged. This framework evolves quarterly to track the latest developments and best practices.</p>
             </div>
             <div class="icons-grid">
-                <div class="icon-card fade-in">
+                <a href="#benchmarks" class="icon-card fade-in" style="text-decoration: none; color: inherit;">
                     <div class="icon">📈</div>
                     <div class="icon-label">Accuracy</div>
-                </div>
-                <div class="icon-card fade-in">
+                </a>
+                <a href="#production" class="icon-card fade-in" style="text-decoration: none; color: inherit;">
                     <div class="icon">🔒</div>
                     <div class="icon-label">Safety</div>
-                </div>
-                <div class="icon-card fade-in">
+                </a>
+                <a href="#tools" class="icon-card fade-in" style="text-decoration: none; color: inherit;">
                     <div class="icon">💰</div>
                     <div class="icon-label">Cost</div>
-                </div>
-                <div class="icon-card fade-in">
+                </a>
+                <a href="#benchmarks" class="icon-card fade-in" style="text-decoration: none; color: inherit;">
                     <div class="icon">⚡</div>
                     <div class="icon-label">Speed</div>
-                </div>
-                <div class="icon-card fade-in">
+                </a>
+                <a href="#production" class="icon-card fade-in" style="text-decoration: none; color: inherit;">
                     <div class="icon">🛡️</div>
                     <div class="icon-label">Reliability</div>
-                </div>
-                <div class="icon-card fade-in">
+                </a>
+                <a href="#production" class="icon-card fade-in" style="text-decoration: none; color: inherit;">
                     <div class="icon">⚙️</div>
                     <div class="icon-label">Governance</div>
-                </div>
+                </a>
             </div>
             <div style="text-align: center; margin-top: 60px;">
                 <a href="#framework" class="btn-primary" style="display: inline-block;">Read Foundations →</a>
