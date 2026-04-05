@@ -1060,8 +1060,14 @@
         }
 
         .fade-in {
-            animation: fadeInUp var(--transition-slow) ease-out forwards;
             opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Responsive */
@@ -1082,6 +1088,20 @@
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--color-bg);
+                border-bottom: 1px solid var(--color-border);
+                flex-direction: column;
+                padding: 20px;
+                gap: 12px;
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-links.active {
+                display: flex;
             }
 
             .hamburger {
@@ -2081,16 +2101,14 @@ Model Selection → Benchmarking → Continuous Eval → Production Monitoring
 
         // Back to Top Button
         const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.remove('hidden');
-            } else {
-                backToTop.classList.add('hidden');
-            }
-        });
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        if (backToTop) {
+            window.addEventListener('scroll', () => {
+                backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+            });
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
 
         // Scroll Animation
         const observerOptions = {
@@ -2101,7 +2119,7 @@ Model Selection → Benchmarking → Continuous Eval → Production Monitoring
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                    entry.target.classList.add('visible');
                     observer.unobserve(entry.target);
                 }
             });
@@ -2153,11 +2171,21 @@ Model Selection → Benchmarking → Continuous Eval → Production Monitoring
             }
         });
 
-        // Mobile Menu (placeholder - could be expanded)
+        // Mobile Menu
         const hamburger = document.getElementById('hamburger');
-        hamburger.addEventListener('click', () => {
-            console.log('Mobile menu would open here');
-        });
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
     </script>
 </body>
 </html>
